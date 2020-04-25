@@ -1,0 +1,40 @@
+
+<div class="div-companies">
+
+  <h1>List of Companies</h1>
+
+  <div class="bnt-add" (click)="showFormCompany()">
+    <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    <span>Add New Company</span>
+  </div>
+
+  <div class="card-container">
+    <nav *ngFor="let company of companies">
+      <div class="card card-small" routerLink="/companies/{{company.id}}/vacancies">
+        <svg routerLink="/companies/{{company.id}}" class="material-icons" width="24" height="24">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <span>{{company.name}}</span>
+      </div>
+    </nav>
+  </div>
+
+  <div *ngIf="formCompanyShow" class="form-add">
+    <form [formGroup]="formCompany">
+      <label>Name:<input type="text" name="name" formControlName="name"></label>
+      <label>Description:<input type="text" name="description" formControlName="description"></label>
+      <label>City:<input type="text" name="city" formControlName="city"></label>
+      <label>Address:<input type="text" name="address" formControlName="address"></label>
+
+      <button type="submit" (click)="saveCompany()" [disabled]="!formCompany.valid">Add</button>
+      <button (click)="closeFormCompany()">cancel</button>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">Name is required!</div>
+      </div>
+
+      <div *ngIf="city.invalid && (city.dirty || city.touched)">
+        <div *ngIf="city.errors.required">City is required!</div>
+      </div>
+    </form>
+  </div>
+</div>

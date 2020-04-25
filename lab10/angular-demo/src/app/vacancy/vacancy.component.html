@@ -1,0 +1,40 @@
+
+<div class="div-companies-vacancies">
+
+  <h1>List of Vacancies for {{company.name}}</h1>
+
+  <div class="bnt-add" (click)="showFormVacancy()">
+    <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    <span>Add New Vacancy</span>
+  </div>
+
+  <div class="card-container">
+    <nav *ngFor="let vacancy of companyVacancies">
+      <div class="card card-small" routerLink="/vacancies/{{vacancy.id}}">
+        <svg routerLink="/vacancies/{{vacancy.id}}" class="material-icons" width="24" height="24">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <span>{{vacancy.name}}</span>
+      </div>
+    </nav>
+  </div>
+
+  <div *ngIf="formVacancyShow === 1" class="form-add">
+    <form [formGroup]="formVacancy">
+      <label>Name:<input type="text" name="name" formControlName="name"></label>
+
+      <label>Description:<input type="text" name="description" formControlName="description"></label>
+
+      <label>Salary:<input type="number" name="salary" formControlName="salary"></label>
+      <button type="submit" (click)="saveVacancy()" [disabled]="!formVacancy.valid">Add</button>
+      <button (click)="closeFormVacancy()">cancel</button>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">Name is required!</div>
+      </div>
+
+      <div *ngIf="salary.invalid && (salary.dirty || salary.touched)">
+        <div *ngIf="salary.errors.required">Salary is required!</div>
+      </div>
+    </form>
+  </div>
+</div>

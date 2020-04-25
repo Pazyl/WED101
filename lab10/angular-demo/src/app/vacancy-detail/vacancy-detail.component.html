@@ -1,0 +1,51 @@
+
+<div class="div-vacancy-detail">
+
+  <h1>{{vacancy.name}}</h1>
+
+  <div class="vacancy-info">
+    <p><span class="span-style">ID: </span>{{vacancy.id}}</p>
+    <p><span class="span-style">SALARY: </span>{{vacancy.salary}}</p>
+    <p><span class="span-style">COMPANY: </span><span class="l-company" routerLink="/companies/{{vacancy.company.id}}">{{vacancy.company.name}}</span></p>
+    <p><span class="span-style">DESCRIPTION: </span>{{vacancy.description}}</p>
+  </div>
+
+  <div class="bnt-s">
+    <div class="bnt-add" (click)="goBack()">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>GO back</span>
+    </div>
+
+    <div class="bnt-add" (click)="showFormVacancy()">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Update</span>
+    </div>
+
+    <div class="bnt-add" (click)="deleteVacancy()">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Delete</span>
+    </div>
+  </div>
+
+  <div *ngIf="formUpdateShow" class="form-update">
+    <form [formGroup]="formVacancy">
+      <label>Name:<input type="text" name="name" formControlName="name"></label>
+
+      <label>Description:<input type="text" name="description" formControlName="description"></label>
+
+      <label>Salary:<input type="number" name="salary" formControlName="salary"></label>
+      <button type="submit" (click)="saveVacancy()" [disabled]="!formVacancy.valid">save</button>
+      <button (click)="closeFormVacancy()">cancel</button>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">Name is required!</div>
+      </div>
+
+      <div *ngIf="salary.invalid && (salary.dirty || salary.touched)">
+        <div *ngIf="salary.errors.required">Salary is required!</div>
+      </div>
+    </form>
+  </div>
+
+
+
+</div>

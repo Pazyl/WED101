@@ -1,0 +1,15 @@
+
+<div class="div-top-vacancies">
+
+  <h1>TOP 10 - Vacancies</h1>
+
+  <div class="card-container">
+    <nav *ngFor="let vacancy of VacanciesTop; let i = index;">
+      <div class="card card-small" routerLink="/vacancies/{{vacancy.id}}">
+        <span class="index">#{{i + 1}}</span>
+        <span>{{vacancy.name}}</span>
+      </div>
+    </nav>
+  </div>
+
+</div>

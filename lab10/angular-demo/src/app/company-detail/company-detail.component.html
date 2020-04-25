@@ -1,0 +1,51 @@
+
+<div class="div-company-detail">
+
+  <h1>{{company.name}}</h1>
+
+  <div class="company-info">
+    <p><span class="span-style">ID: </span>{{company.id}}</p>
+    <p><span class="span-style">CITY: </span>{{company.city}}</p>
+    <p><span class="span-style">ADDRESS: </span>{{company.address}}</p>
+    <p><span class="span-style">DESCRIPTION: </span>{{company.description}}</p>
+  </div>
+
+  <div class="bnt-s">
+    <div class="bnt-add" (click)="goBack()">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>GO back</span>
+    </div>
+
+    <div class="bnt-add" (click)="showFormCompany()">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Update</span>
+    </div>
+
+    <div class="bnt-add" (click)="deleteCompany(company.id)">
+      <svg width="27.2" height="27.2"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Delete</span>
+    </div>
+  </div>
+
+  <div *ngIf="formCompanyShow" class="form-add">
+    <form [formGroup]="formCompany">
+      <label>Name:<input type="text" name="name" formControlName="name"></label>
+      <label>Description:<input type="text" name="description" formControlName="description"></label>
+      <label>City:<input type="text" name="city" formControlName="city"></label>
+      <label>Address:<input type="text" name="address" formControlName="address"></label>
+
+      <button type="submit" (click)="saveCompany()" [disabled]="!formCompany.valid">Save</button>
+      <button (click)="closeFormCompany()">cancel</button>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors.required">Name is required!</div>
+      </div>
+
+      <div *ngIf="city.invalid && (city.dirty || city.touched)">
+        <div *ngIf="city.errors.required">City is required!</div>
+      </div>
+    </form>
+  </div>
+
+
+
+</div>
